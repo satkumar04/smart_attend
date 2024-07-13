@@ -11,7 +11,7 @@ class AnimatedSizeExampleAppTwo extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.green,
         body: Center(
           child: AnimatedSizeExampleTwo(),
         ),
@@ -40,7 +40,6 @@ class _AnimatedSizeExampleState extends State<AnimatedSizeExampleTwo>
     animation = CurvedAnimation(parent: controller, curve: Curves.easeOut);
     controller.repeat(reverse: false);
     controller.forward();
-    
   }
 
   @override
@@ -48,10 +47,13 @@ class _AnimatedSizeExampleState extends State<AnimatedSizeExampleTwo>
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-
         Center(
-          child: ScaleTransition(scale: animation,
-            child: SizedBox(
+          child: ScaleTransition(
+            scale: animation,
+            child: Container(decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                  ),
               height: 80,
               width: 80,
               child: Image.asset(

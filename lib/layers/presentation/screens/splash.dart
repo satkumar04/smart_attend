@@ -21,11 +21,11 @@ class SplashPageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return  GetMaterialApp(
-       theme:  ThemeData(scaffoldBackgroundColor: const Color.fromARGB(255, 251, 56, 56)),
-       home: const SplashPage(),
-     );
+    return GetMaterialApp(
+      theme: ThemeData(
+          scaffoldBackgroundColor: const Color.fromARGB(255, 251, 56, 56)),
+      home: const SplashPage(),
+    );
   }
 }
 
@@ -50,15 +50,13 @@ class _SplashPageState extends State<SplashPage>
   double padValue = 0;
 
   void _updateSize() {
-    
     setState(() {
       _size = _large ? 250.0 : 120.0;
       _sizeHeight = _large ? 250.0 : 120.0;
       _large = !_large;
 
       _remainingSeconds--;
-       FlutterNativeSplash.remove();
-       
+      FlutterNativeSplash.remove();
     });
   }
 
@@ -66,7 +64,6 @@ class _SplashPageState extends State<SplashPage>
   void initState() {
     super.initState();
     _startCountdown();
-    
   }
 
   @override
@@ -77,7 +74,6 @@ class _SplashPageState extends State<SplashPage>
   }
 
   void _startCountdown() {
-   
     const oneSecond = Duration(seconds: 1);
     _timer = Timer.periodic(oneSecond, (Timer timer) {
       if (_remainingSeconds <= 0) {
@@ -93,7 +89,6 @@ class _SplashPageState extends State<SplashPage>
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: Colors.red,
       body: AnimatedPadding(
@@ -106,22 +101,29 @@ class _SplashPageState extends State<SplashPage>
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                  ),
                   child: AnimatedSize(
-                      curve: Curves.ease,
-                      duration: const Duration(milliseconds: 800),
-                      onEnd: () {
-                        setState(() {
-                          _isVisible = true;
-                        });
-                      },
-                      child: SizedBox(
-                        width: _size,
-                        height: _sizeHeight,
-                        child: _isVisible
-                            ? const AnimatedSizeExampleAppTwo()
-                            : const SizedBox(),
-                      )),
+                    curve: Curves.easeOut,
+                    duration: const Duration(milliseconds: 800),
+                    onEnd: () {
+                      setState(() {
+                        _isVisible = true;
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,),
+                      width: _size,
+                      height: _sizeHeight,
+                      child: _isVisible
+                          ? const AnimatedSizeExampleTwo()
+                          : const SizedBox(),
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
@@ -164,9 +166,9 @@ class _SplashPageState extends State<SplashPage>
           //  Get.to(()=> const Login(),transition: Transition.downToUp,duration: const Duration(seconds: 1));
           //Get.to(()=> const Login());
           // Get.to(const Login());
-          Get.off(const Login(),
-              transition: Transition.fade,
-              duration: const Duration(seconds: 1));
+          // Get.off(const Login(),
+          //     transition: Transition.fade,
+          //     duration: const Duration(seconds: 1));
         },
       ),
     );
