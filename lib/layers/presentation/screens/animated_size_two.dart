@@ -50,12 +50,13 @@ class _AnimatedSizeExampleState extends State<AnimatedSizeExampleTwo>
         Center(
           child: ScaleTransition(
             scale: animation,
-            child: Container(decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                  ),
-              height: 80,
-              width: 80,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              height: 120,
+              width: 120,
               child: Image.asset(
                 'assets/images/logo.png',
               ),

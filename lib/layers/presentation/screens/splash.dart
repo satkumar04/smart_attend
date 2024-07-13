@@ -48,7 +48,7 @@ class _SplashPageState extends State<SplashPage>
   late double borderRadius;
   late double margin;
   double padValue = 0;
-
+  AlignmentGeometry _alignment = Alignment.centerRight;
   void _updateSize() {
     setState(() {
       _size = _large ? 250.0 : 120.0;
@@ -94,69 +94,66 @@ class _SplashPageState extends State<SplashPage>
       body: AnimatedPadding(
         padding: EdgeInsets.only(bottom: padValue),
         duration: const Duration(milliseconds: 190),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                  ),
-                  child: AnimatedSize(
-                    curve: Curves.easeOut,
-                    duration: const Duration(milliseconds: 800),
-                    onEnd: () {
-                      setState(() {
+        child: Padding(
+         padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                    ),
+                    child: AnimatedSize(
+                      curve: Curves.easeOut,
+                      duration: const Duration(milliseconds: 800),
+                      onEnd: () {
                         _isVisible = true;
-                      });
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
+                         _changeAlignment();
+                        // setState(() {
+                        //   _isVisible = true;
+                        //   _changeAlignment();
+                        // });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,),
-                      width: _size,
-                      height: _sizeHeight,
-                      child: _isVisible
-                          ? const AnimatedSizeExampleTwo()
-                          : const SizedBox(),
+                          color: Colors.white,
+                        ),
+                        width: _size,
+                        height: _sizeHeight,
+                        child: _isVisible
+                            ? const AnimatedSizeExampleTwo()
+                            : const SizedBox(
+                                height: 120,
+                                width: 120,
+                              ),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                AnimatedAlign(
-                  alignment:
-                      !_isVisible ? Alignment.centerRight : Alignment.center,
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.fastEaseInToSlowEaseOut,
-                  child: _isVisible
-                      ? const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'SmartAttend',
-                              style:
-                                  TextStyle(fontSize: 30, color: Colors.white),
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                          ],
-                        )
-                      : const SizedBox(
-                          width: 10,
-                        ),
-                  onEnd: () {
-                    setState(() {
-                      padValue = 200;
-                    });
-                  },
-                )
-              ],
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  AnimatedAlign(
+                    alignment: _alignment,
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.ease,
+                    child: _isVisible ? const Text(
+                      'SmartAttend   ',
+                      style: TextStyle(fontSize: 30, color: Colors.white),
+                    ) : const Center(),
+          
+                    onEnd: () {
+                      setState(() {
+                        padValue = 200;
+                      });
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -166,12 +163,21 @@ class _SplashPageState extends State<SplashPage>
           //  Get.to(()=> const Login(),transition: Transition.downToUp,duration: const Duration(seconds: 1));
           //Get.to(()=> const Login());
           // Get.to(const Login());
-          // Get.off(const Login(),
-          //     transition: Transition.fade,
-          //     duration: const Duration(seconds: 1));
+          Get.off(const Login(),
+              transition: Transition.fade,
+              duration: const Duration(seconds: 1));
         },
       ),
     );
+  }
+
+  void _changeAlignment() {
+    setState(() {
+      _alignment = _alignment == Alignment.centerRight
+          ? Alignment.center
+          : Alignment.centerRight;
+     
+    });
   }
 
   Route _createRoute() {
