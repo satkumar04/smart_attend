@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: const Color.fromARGB(255, 251, 56, 56)),
       home: const SplashPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

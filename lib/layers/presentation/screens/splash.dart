@@ -95,7 +95,7 @@ class _SplashPageState extends State<SplashPage>
         padding: EdgeInsets.only(bottom: padValue),
         duration: const Duration(milliseconds: 190),
         child: Padding(
-         padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -112,7 +112,7 @@ class _SplashPageState extends State<SplashPage>
                       duration: const Duration(milliseconds: 800),
                       onEnd: () {
                         _isVisible = true;
-                         _changeAlignment();
+                        _changeAlignment();
                         // setState(() {
                         //   _isVisible = true;
                         //   _changeAlignment();
@@ -141,11 +141,12 @@ class _SplashPageState extends State<SplashPage>
                     alignment: _alignment,
                     duration: const Duration(seconds: 1),
                     curve: Curves.ease,
-                    child: _isVisible ? const Text(
-                      'SmartAttend   ',
-                      style: TextStyle(fontSize: 30, color: Colors.white),
-                    ) : const Center(),
-          
+                    child: _isVisible
+                        ? const Text(
+                            'SmartAttend   ',
+                            style: TextStyle(fontSize: 30, color: Colors.white),
+                          )
+                        : const Center(),
                     onEnd: () {
                       setState(() {
                         padValue = 200;
@@ -176,7 +177,6 @@ class _SplashPageState extends State<SplashPage>
       _alignment = _alignment == Alignment.centerRight
           ? Alignment.center
           : Alignment.centerRight;
-     
     });
   }
 

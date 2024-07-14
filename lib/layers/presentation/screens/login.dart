@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smart_attendance/layers/presentation/screens/course_list.dart';
 import 'package:smart_attendance/utlity/color.dart';
 import 'package:smart_attendance/utlity/navigation.dart';
 
@@ -151,8 +152,11 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
               const SizedBox(height: 30),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: ((context) => const Navigation())));
+                  Get.to(() => const CourseList(),
+                      transition: Transition.noTransition,
+                      duration: const Duration(seconds: 1));
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: ((context) => const CourseList())));
                 },
                 child: Container(
                   alignment: Alignment.center,
