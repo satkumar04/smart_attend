@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:smart_attendance/layers/data/model/student.dart';
-import 'package:smart_attendance/layers/presentation/screens/login.dart';
+import 'package:smart_attendance/layers/presentation/screens/attendance_details.dart';
 
 final List<Student> entries = <Student>[
   const Student(name: 'MLT 100', isSelected: false),
@@ -35,7 +35,6 @@ class CourseList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AlignmentGeometry _alignment = Alignment.centerRight;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -88,8 +87,8 @@ class CourseList extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
                             onTap: () {
-                              Get.off(const Login(),
-                                  transition: Transition.fade,
+                              Get.off(const AttendanceDetails(),
+                                  transition: Transition.noTransition,
                                   duration: const Duration(seconds: 1));
                             },
                             child: Container(
