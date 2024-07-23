@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:smart_attendance/layers/data/model/attendance.dart';
+import 'package:smart_attendance/layers/presentation/screens/face_capture.dart';
 
 import '../widgets/dropdown_widget.dart';
 
@@ -134,15 +135,16 @@ class AttendanceDetails extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   style: raisedButtonStyle,
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => const FaceCapture(),
+                        transition: Transition.downToUp,
+                        duration: const Duration(seconds: 1));
+                  },
                   child: const Text(
                     "Mark Attendance",
                     style: TextStyle(color: Colors.white),
                   ),
-                )
-                    .animate()
-                    .fade()
-                    .slideY(begin: 7, end: 0, duration: 700.ms),
+                ).animate().fade().slideY(begin: 7, end: 0, duration: 700.ms),
               ),
               const SizedBox(
                 height: 40,
@@ -173,7 +175,9 @@ class AttendanceDetails extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Expanded(
                 child: ListView.builder(
                   itemCount: entries.length,
@@ -182,17 +186,17 @@ class AttendanceDetails extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
                       child: Container(
                         height: 30,
-                         decoration: BoxDecoration(
-                                  color: entries[position].status == 'Present'
-                                      ? const Color(0xFFCDFFCC)
-                                      : const Color(0xFFFFE3E3),
-                                  border: Border.all(
-                                    color: const Color.fromARGB(255, 16, 6, 3),
-                                    style: BorderStyle.solid,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(3.0),
-                                ),
+                        decoration: BoxDecoration(
+                          color: entries[position].status == 'Present'
+                              ? const Color(0xFFCDFFCC)
+                              : const Color(0xFFFFE3E3),
+                          border: Border.all(
+                            color: const Color.fromARGB(255, 16, 6, 3),
+                            style: BorderStyle.solid,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(3.0),
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -206,13 +210,13 @@ class AttendanceDetails extends StatelessWidget {
                   },
                 ),
               ),
-               const Text(
-                    "Powered by Lucify",
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+              const Text(
+                "Powered by Lucify",
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ));
